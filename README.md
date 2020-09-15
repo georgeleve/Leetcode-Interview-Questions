@@ -1,6 +1,6 @@
 # LeetCode
 
-Here I will post my LeetCode and HackerRank solutions.
+Here I will post my LeetCode and HackerRank solutions in Java.
 
 https://leetcode.com/georgeleve/
 
