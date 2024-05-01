@@ -1,7 +1,7 @@
 # Leetcode solutions in Python
 https://leetcode.com/georgeleve/
 
-1. Arrays and Hashing
+1a. Arrays and Hashing
 
 2a. Two Pointers  
 2b. Stack  
@@ -10,7 +10,7 @@ https://leetcode.com/georgeleve/
 3b. Sliding Window  
 3c. Linked List  
 
-4. Trees  
+4a. Trees  
 
 5a. Tries  
 5b. Heap/Priority Queue   
