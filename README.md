@@ -1,4 +1,4 @@
-# Leetcode solutions in Python (Blind 75)
+# LeetCode solutions in Python (Blind 75)
 https://leetcode.com/georgeleve/
 
 1a. Arrays and Hashing  
