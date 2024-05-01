@@ -17,8 +17,8 @@ https://leetcode.com/georgeleve/
 5c. Backtracking  
 
 6a. Intervals  
-6b. Greedy
-6c. Graphs
+6b. Greedy  
+6c. Graphs  
 6d. 1-D DP  
 
 7a. Advanced Graphs  
