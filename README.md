@@ -1,4 +1,5 @@
-# LeetCode solutions in Python (Blind 75)
+# LeetCode Solutions in Python
+# Solving the most famous coding interview questions to prepare.
 https://leetcode.com/georgeleve/
 
 1a. Arrays and Hashing  
