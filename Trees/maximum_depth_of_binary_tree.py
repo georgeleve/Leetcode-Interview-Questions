@@ -1,4 +1,5 @@
-# https://leetcode.com/problems/diameter-of-binary-tree/description/
+#https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+
 from collections import deque
 
 class TreeNode(object):
@@ -36,9 +37,10 @@ class Solution(object):
         while stack:
             currentDepth, root = stack.pop()
             if root is not None:
-                maxDepth = max(maxDepth, currentDepth)
+                #print(root.val)
                 stack.append((currentDepth + 1, root.left))
                 stack.append((currentDepth + 1, root.right))
+                maxDepth = max(maxDepth, currentDepth)
         return maxDepth
 
     #Breadth First Search(Level Order Traversal)
@@ -59,6 +61,27 @@ class Solution(object):
                     queue.append(node.right)
             height += 1
         return height
+    
+    # Given a binary tree, return the product of the largest value in each level of the tree
+    def productOfLargestValue(self, root):
+        if not root:
+            return 0
+        queue = deque()
+        queue.append(root)
+        product = 1
+        while queue:
+            currentLevelLargestValue = -1
+            for i in range(0, len(queue)):
+                node = queue.popleft()
+                if node.val > currentLevelLargestValue:
+                    currentLevelLargestValue = node.val
+                # add all of the children
+                if node.left != None:
+                    queue.append(node.left)
+                if node.right != None:
+                    queue.append(node.right)
+            product = product * currentLevelLargestValue
+        return product
 
 
 
@@ -71,19 +94,13 @@ class Solution(object):
         4        5
     None None  None None
     """
-    # 
-    def diameterOfBinarySearchTree(self, root):
-        return "hello world"
-
 
 if __name__ == "__main__":
     """
-    Constructed binary tree is
-                1
-              /   \
-            2      3
-          /  \
-        4     5
+    Good questions to ask the interviewer
+    1) How is tree represented -> Is it norde class (val, left, right)
+    2) If root is null, return 0?
+    3) should i do it recursively or iteratively? I can do it both with BFS and DFS algorithm
     """
     root = TreeNode(1)
     root.left = TreeNode(2)
@@ -95,5 +112,5 @@ if __name__ == "__main__":
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingDFS(root))
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingIterativeDFS(root))
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingBFS(root))
-    
+    #print("The product of the largest value in each level of the tree is", a.productOfLargestValue(root))
     print(a.diameterOfBinarySearchTree(root))
