@@ -11,7 +11,7 @@ class Solution(object):
 
     # Solve the problem using Depth First Search (Preorder Traversal) and recursion - We can solve it using postorder traversal as well
     def invertBinaryTree(self, root):
-        if root is None:
+        if root is None: #base case
             return None
 
         temp = root.left
