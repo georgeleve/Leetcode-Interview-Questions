@@ -7,9 +7,9 @@ class Solution:
         numberOfIslands = 0
         ROWS = len(grid)
         COLUMNS = len(grid[0])
-        visited = set() #keep track of the visited cells
+        visited = set() # Keep track of the visited cells
         
-        def bfs(i, j):
+        def dfs(i, j):
             stack = []
             stack.append((i, j))
             visited.add((i, j))
@@ -29,7 +29,7 @@ class Solution:
         for i in range(ROWS):
             for j in range(COLUMNS):
                 if grid[i][j] == "1" and (i,j) not in visited:
-                    bfs(i, j)
+                    dfs(i, j)
                     visited.add((i,j))
                     numberOfIslands += 1
         return numberOfIslands
