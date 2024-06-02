@@ -61,10 +61,6 @@ class Solution(object):
                     queue.append(node.right)
             height += 1
         return height
-    
-
-
-
 
         """
     Constructed binary tree is
@@ -93,5 +89,3 @@ if __name__ == "__main__":
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingDFS(root))
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingIterativeDFS(root))
     print("The height (maxmimum depth) of the tree is ", a.findHeightUsingBFS(root))
-    #print("The product of the largest value in each level of the tree is", a.productOfLargestValue(root))
-    print(a.diameterOfBinarySearchTree(root))
