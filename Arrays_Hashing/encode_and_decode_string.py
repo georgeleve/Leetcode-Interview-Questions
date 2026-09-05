@@ -46,6 +46,20 @@ class Solution:
     
         return decodedStr
 
+    def decode2(self, str: str) -> List[str]:
+        i = 0
+        decodedStrs = []
+
+        while i < len(str):
+            j = i
+            while str[j] != "#":
+                j += 1
+            length = int(str[i:j])
+
+            decodedStrs.append(str[j + 1 : j + 1 + length])
+            i = j + 1 + length
+        return decodedStrs
+
 '''
 # Alternative Pythonic implementation
 class Solution:
