@@ -1,0 +1,139 @@
+================================================================================
+                       THE 5 BINARY SEARCH TEMPLATES
+================================================================================
+
+--------------------------------------------------------------------------------
+1. EXACT MATCH BINARY SEARCH
+--------------------------------------------------------------------------------
+Use Case: Finding a specific element in a sorted array with unique values.
+
+Python Code:
+def binary_search_exact(nums: list[int], target: int) -> int:
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid  # Found match immediately
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return -1  # Target not found
+
+Key Details:
+- Loop condition: left <= right
+- Updates: left = mid + 1, right = mid - 1
+- Returns: Exact index or -1 if missing
+
+
+--------------------------------------------------------------------------------
+2. BOUNDARY SEARCH (LOWER BOUND / FIRST OCCURRENCE)
+--------------------------------------------------------------------------------
+Use Case: Finding the first occurrence of an element, or the first index 
+          where nums[i] >= target (Python's bisect_left / C++ std::lower_bound).
+
+Python Code:
+def lower_bound(nums: list[int], target: int) -> int:
+    left, right = 0, len(nums)
+    
+    while left < right:
+        mid = (left + right) // 2
+        
+        if nums[mid] >= target:
+            right = mid  # Keep mid in play; search left half
+        else:
+            left = mid + 1  # Target must be strictly to the right
+            
+    return left  # First index where nums[i] >= target
+
+Key Details:
+- Loop condition: left < right
+- Initial right bound: len(nums)
+- Updates: left = mid + 1, right = mid
+
+
+--------------------------------------------------------------------------------
+3. STRUCTURAL / PARTITION SEARCH (e.g., FIND MIN IN ROTATED ARRAY)
+--------------------------------------------------------------------------------
+Use Case: Finding inflection points, peaks, or minimums in transformed arrays.
+
+Python Code:
+def find_min_rotated(nums: list[int]) -> int:
+    left, right = 0, len(nums) - 1
+    
+    while left < right:
+        mid = (left + right) // 2
+        
+        if nums[mid] > nums[right]:
+            left = mid + 1  # Minimum must be strictly in the right half
+        else:
+            right = mid  # Minimum could be mid or in the left half
+            
+    return left  # Index of the minimum element
+
+Key Details:
+- Compares mid to boundary (nums[right]), not target
+- Loop condition: left < right
+- Initial right bound: len(nums) - 1
+- Updates: left = mid + 1, right = mid
+
+
+--------------------------------------------------------------------------------
+4. BINARY SEARCH ON ANSWER (MONOTONIC PREDICATE)
+--------------------------------------------------------------------------------
+Use Case: Searching over a range of possible answers [min_ans, max_ans] 
+          using a feasibility checking function (is_possible).
+
+Python Code:
+def search_on_answer(min_possible: int, max_possible: int) -> int:
+    def is_possible(mid: int) -> bool:
+        # Custom logic checking if 'mid' is a valid solution
+        pass
+
+    left, right = min_possible, max_possible
+    ans = -1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if is_possible(mid):
+            ans = mid  # Record valid answer
+            right = mid - 1  # Try to find a smaller/better valid answer
+        else:
+            left = mid + 1  # Answer too small/invalid, shift right
+            
+    return ans
+
+Key Details:
+- Searches a range of values, not array indices
+- Uses a condition function that produces [False, False, True, True] sequence
+- Updates depend on whether you are minimizing or maximizing the answer
+
+
+--------------------------------------------------------------------------------
+5. FLOATING-POINT BINARY SEARCH
+--------------------------------------------------------------------------------
+Use Case: Numerical root-finding or real-valued continuous domain optimizations.
+
+Python Code:
+def binary_search_float(target: float) -> float:
+    left, right = 0.0, target
+    eps = 1e-7  # Required precision tolerance
+    
+    while (right - left) > eps:
+        mid = (left + right) / 2.0
+        
+        if mid * mid >= target:
+            right = mid  # Precision continuous step (no - 1)
+        else:
+            left = mid   # Precision continuous step (no + 1)
+            
+    return left
+
+Key Details:
+- Precision controlled by tolerance threshold (right - left > eps)
+- Direct assignments: left = mid or right = mid (no integer adjustments)
+================================================================================
